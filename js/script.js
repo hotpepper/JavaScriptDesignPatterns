@@ -1,11 +1,19 @@
 
 //set default value
-var clicks = 0;
+var cat1_clicks = 0;
+var cat1_name = "Seth"
+var cat2_clicks = 0;
+var cat2_name = "Kristen"
+//name the cats
+$("#cat1_name").text(cat1_name)
+$("#cat2_name").text(cat2_name)
 
-$('.cat_image').click(function() {
-  clicks++
-  console.log(clicks)
-  $(".label").text("Clicks: "+clicks);
-  //alert( "Handler for .click() called." );
-});
+var clickCounter = function(cat, cat_label, cat_count) {
+	$(cat).click(function(){
+		cat_count++;
+		$(cat_label).text("Clicks: "+cat_count)
+	})
+};
 
+clickCounter("#cat1", ".cat1_label", cat1_clicks);
+clickCounter("#cat2", ".cat2_label", cat2_clicks);

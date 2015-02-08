@@ -1,10 +1,10 @@
 
 /* 
-*/
+
 * {
     border: 1px solid red !important;
 }
-
+*/
 
 * {
     -webkit-box-sizing: border-box;
@@ -55,10 +55,12 @@
 }
 .col-1 {
     width: 10%;
+    border: 1px solid grey ;
 }
 .col-3{
 	width: 90%;
 	text-align: center;
+	border: 1px solid grey ;
 }
 
 li {

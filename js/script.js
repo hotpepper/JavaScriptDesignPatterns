@@ -1,9 +1,4 @@
 
-
-
-
-
-
 //cat constructor
 var Cat = function (name, img, count) {
   this.name = name;
@@ -43,6 +38,7 @@ var clickCounter = function(cat) {
 };
 
 
+//this should be re-written and wrapped up
 
 //build the cat objects
 var cat1 = new Cat('Seth', 'http://c2.staticflickr.com/2/1126/625069434_db86b67df8_b.jpg', 0);

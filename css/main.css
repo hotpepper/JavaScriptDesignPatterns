@@ -1,9 +1,10 @@
 
 /* 
+*/
 * {
     border: 1px solid red !important;
 }
-*/
+
 
 * {
     -webkit-box-sizing: border-box;
@@ -21,10 +22,16 @@
     display: flex; 
     flex-wrap: wrap;
 }
+.header {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex; 
+    flex-wrap: wrap;
+}
 
 .cat_image{
 	width: 50%;
-	height: 130px;
+	height: 50%;
 	padding: 1%
 }
 .cat_image2{
@@ -44,5 +51,19 @@
 
 }
 .col-2{
-	width: 50%;
+	width: 45%;
+}
+.col-1 {
+    width: 10%;
+}
+.col-3{
+	width: 90%;
+	text-align: center;
+}
+
+li {
+	list-style-type: none;
+	text-decoration: underline;
+	color: blue;
+	text-align: center;
 }

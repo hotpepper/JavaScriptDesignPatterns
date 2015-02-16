@@ -10,7 +10,7 @@
             return (Math.random() >= 0.5);
         }
 
-        var nameColumns = $('tbody.name-col'),
+        var nameColumns = $('tbody .name-col'),
             attendance = {};
 
         nameColumns.each(function() {
@@ -82,3 +82,7 @@ $(function() {
 
     countMissing();
 }());
+
+
+
+//---------------------- NOTES ------------------------

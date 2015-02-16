@@ -51,7 +51,9 @@
 
 }
 .col-2{
+	text-align: center;
 	width: 45%;
+	border: 1px solid grey ;
 }
 .col-1 {
     width: 10%;
@@ -68,4 +70,17 @@ li {
 	text-decoration: underline;
 	color: blue;
 	text-align: center;
+}
+#admin-col1{
+	border: none;
+}
+#admin-col2{
+	border: none;
+}
+form{
+	width: 25%;
+	text-align: left;
+}
+button{
+	float: left;
 }

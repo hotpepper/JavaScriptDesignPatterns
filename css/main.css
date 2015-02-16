@@ -29,7 +29,7 @@
     flex-wrap: wrap;
 }
 
-.cat_image{
+#cat_img{
 	width: 50%;
 	height: 50%;
 	padding: 1%

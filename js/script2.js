@@ -30,101 +30,80 @@ var model = {
   ]
 };
 
-
 var controller = {
-  init: function() {
-    //default to first cat in list
-    model.current = model.cats[0];
-
-    //views initialize
-    //list init
-    catListView.init();
-    //main view init
-    catView.init();
-  },
-
-  getCurrent: function() {
-    return model.current;
-  },
-
-  getCats: function(){
-    return model.cats;
-  },
-
-  setCurrentCat: function(cat) {
-    model.current = cat;
-  },
-
-  incrementCounter: function() {
-    model.current.count++;
-    console.log(model.current.count)
-    catView.render();
-  }
+	start : function () {
+		//gotta start somewheres 
+		model.current = model.cats[0];
+		//start list 
+		listView.start();
+		//start main
+		mainView.start();
+	},
+	getCat: function() {
+		return model.current;
+	},
+	getAllCats: function() {
+		return model.cats;
+	},
+	countMe: function (){
+		model.current.count++;
+		//update view
+		mainView.show()
+		
+	},
+	setCurrent: function(cat) {
+		model.current = cat;
+		console.log("current cat is: "+ model.current.name);
+		mainView.show();
+		mainView.countImg();
+	}
 
 };
 
-var catView = {
-  //main view
-  init: function() {
-    //store DOM poointers
-    this.catElm = document.getElementById('cat');
-    this.catNameElm = document.getElementById('cat-name');
-    this.catImageElm = document.getElementById('cat-img');
-    this.countElm = document.getElementById('cat-count');
+var listView = {
+	start: function(){
+		this.makeList()
+		},
+	listenToMe: function(copyLI, copyCat){//deals with closure issue
+		return function(){
+			//adds listener to list obj
+			$(copyLI).click(console.log("clicked: "+copyLI));
+			//tell model which is current cat
+			controller.setCurrent(copyCat);
 
-    //add click listener
-    this.catImageElm.addEventListener('click', function(){
-      controller.incrementCounter();
-    });
+		}
+	},
+	makeList: function(){ //builds up the list of cats in view from model
+		var catList = controller.getAllCats();
+		for (var i = 0; i< catList.length; i++) {
+			//add cat to list
+			var curCat = catList[i]; 
+			$("#list").append("<li id='li"+i.toString()+"'>"+catList[i].name+"</li>")
+			
+			//add listener to each cat's list element
+			var cruID = "#li"+i.toString()
+			$(cruID).click(this.listenToMe(cruID, curCat))		
+		};
+	},
 
-    //update DOm elments with values
-    this.render();
-  },
-
-  render: function() {
-    //update DOM elemenets with current cat
-    var currentCat = controller.getCurrent();
-    this.catNameElm.textContent = currentCat.name;
-    this.countElm.textContent = currentCat.count;
-    this.catImageElm.src = currentCat.img;
-  }
+	
 };
 
-var catListView = {
-  //list view 
-  init : function() {
-    this.catListElm = document.getElementById('cat-list');
-    this.render();
-  },
-
-  render: function(){
-    var cat, elm, i;
-    var cats = controller.getCats();
-    //empyt the list
-    this.catListElm.innerHTML = '';
-
-    //loop cats
-    for (i=0; i<cats.length; i++) {
-      //current cat
-      cat = cats[i];
-
-      //make new cat list itme and set its text
-      elm = document.createElement('li');
-      elm.textContent = cat.name;
-
-      // on click, setCurrentCat and render the catView
-      // closure-in-a-loop 
-      elm.addEventListener('click', (function(catCopy) {
-        return   function() {
-          controller.setCurrentCat(catCopy);
-          catView.render();
-        };
-      })(cat)); 
-
-      this.catListElm.appendChild(elm);
-    }
-  }
+var mainView= {
+	start: function(){
+		console.log("Starting main")
+		//this.show();
+	},
+	show: function(){
+		var curCat = controller.getCat();
+		$("#cat_img").attr("src",curCat.img);
+		$("#name").text(curCat.name);
+		$("#count").text(curCat.count);
+	},
+	countImg: function(){
+		$("#cat_img").click(controller.countMe());
+	}
 };
 
 //run
-controller.init();
+controller.start();

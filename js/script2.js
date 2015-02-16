@@ -53,7 +53,7 @@ var controller = {
 	},
 	setCurrent: function(cat) {
 		model.current = cat;
-		console.log("current cat is: "+ model.current.name);
+		//console.log("current cat is: "+ model.current.name);
 		mainView.show();
 		mainView.countImg();
 	}
@@ -67,7 +67,7 @@ var listView = {
 	listenToMe: function(copyLI, copyCat){//deals with closure issue
 		return function(){
 			//adds listener to list obj
-			$(copyLI).click(console.log("clicked: "+copyLI));
+			//$(copyLI).click(console.log("clicked: "+copyLI));
 			//tell model which is current cat
 			controller.setCurrent(copyCat);
 
@@ -101,7 +101,11 @@ var mainView= {
 		$("#count").text(curCat.count);
 	},
 	countImg: function(){
-		$("#cat_img").click(controller.countMe());
+		var catImg = $("#cat_img");
+		catImg.click( function() { // ---------------- need to pass a anon function to make this work properly
+			controller.countMe()
+		});
+		console.log(catImg)
 	}
 };
 

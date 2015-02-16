@@ -138,7 +138,7 @@ var mainView= {
 	showAdmin: function(){
 		var curCat = controller.getCat();
 		$("#admin-col2").append("<form></form>");
-		$("form").append("Name : <input type='text' name='name' value='"+curCat.name+"'><br> ")
+		$("form").append("Name: <input type='text' name='name' value='"+curCat.name+"'><br> ")
 		$("form").append("img src: <input type='text' name='img' value='"+curCat.img+"'> <br>")
 		$("form").append("clicks#: <input type='text' name='clicks' value='"+curCat.count+"'><br> ")
 		$("#admin-col2").append("<button id = 'cancel-button'>CANCEL</button>");

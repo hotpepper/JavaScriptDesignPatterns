@@ -32,6 +32,8 @@ var Cat = function(){
 
 
 var ViewModel = function() {
+	//option for using self to step out of nested scope issuesand use this to rfer to view model
+	//var self = this; //and then can ue self.thing to get out to vm
 	this.currentCat = ko.observable(new Cat())
 	this.incrementCounter = function(){
 		this.clickCount( this.clickCount() + 1 );

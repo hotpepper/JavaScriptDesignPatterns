@@ -26,6 +26,21 @@ var ViewModel = function() {
 		this.clickCount( this.clickCount() + 1 );
 	};
 
+	//adding nick names 
+	this.nickNames =  {
+		people: [
+            { firstName: 'Name1' },
+            { firstName: 'Name2'},
+            { firstName: 'Name3'}
+        ]
+    }
+    
+/*ko.applyBindings({});*/
 };
 
 ko.applyBindings(new ViewModel());
+
+
+
+
+

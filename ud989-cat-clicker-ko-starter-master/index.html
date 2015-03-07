@@ -6,14 +6,14 @@
 </head>
 <body>
     <ul id="cat-list"></ul>
-    <div id="cat">
+    <div id="cat" data-bind="with: currentCat()">
 
-        <h2 id="cat-name" data-bind="text: currentCat().name"></h2>
-        <div id="cat-count" data-bind="text: currentCat().clickCount"></div>
-        <div id="cat-levels" data-bind="text: currentCat().level"></div>
-        <img id="cat-img" src="" alt="cute cat" data-bind="click: incrementCounter, attr: {src: currentCat().imgSrc}">
+        <h2 id="cat-name" data-bind="text: name"></h2>
+        <div id="cat-count" data-bind="text: clickCount"></div>
+        <div id="cat-levels" data-bind="text: level"></div>
+        <img id="cat-img" src="" alt="cute cat" data-bind="click: $parent.incrementCounter, attr: {src: imgSrc}">
         <div><h3>Nick Names</h3>
-            <ul data-bind="foreach: currentCat().nickNames.names"><!--tell knockout to loop the nickNames.names array-->
+            <ul data-bind="foreach: nickNames.names"><!--tell knockout to loop the nickNames.names array-->
                 <li data-bind="text: firstName"></li>
             </ul>
         </div>

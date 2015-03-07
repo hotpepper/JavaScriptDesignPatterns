@@ -243,12 +243,16 @@ var view = {
 			$(".education-entry:last").append(controller.formatOnline(i))
 		}
 	},
+	showMap: function(){
+		$("#mapDiv").append(googleMap);
+	},
 	render: function(){
 		this.showBio();
 		this.showWork();
 		this.showSchool();
 		this.showOnline();
 		this.showProjects();
+		this.showMap();
 	}
 };
 

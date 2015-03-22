@@ -80,8 +80,7 @@ var ViewModel = function() {
 	this.currentCat = ko.observable(this.catList()[displayCat]);
 
 	this.setCat = function(clickedCat){
-		self.currentCat(clickedCat)
-
+		self.currentCat(clickedCat)//ko.click passes the clicked object as param
 	}
 		
 	

@@ -4,35 +4,40 @@ var initialCats = [
     	imgSrc: 'http://c2.staticflickr.com/2/1126/625069434_db86b67df8_b.jpg',
     	imgAttribution : "https://flicker.com",
     	clickCount: 0,
-    	nickNames : ['Name1' ,'Name2', 'Name3']
+    	nickNames : ['Name1' ,'Name2', 'Name3'],
+    	listPost: 0
     },
      {
     	name: "Cat2",
     	imgSrc: 'http://c3.staticflickr.com/3/2298/2290467335_89067c7b51_n.jpg',
     	imgAttribution : "https://flicker.com",
     	clickCount: 0,
-    	nickNames : ['Name1' ,'Name2', 'Name3']
+    	nickNames : ['Name1' ,'Name2', 'Name3'],
+    	listPost: 1
 	},
 	{
 		name: "Cat3",
     	imgSrc: 'http://c4.staticflickr.com/4/3765/9126414150_0d9e1b840b_c.jpg',
     	imgAttribution : "https://flicker.com",
     	clickCount: 0,
-    	nickNames : ['Name1' ,'Name2', 'Name3']
+    	nickNames : ['Name1' ,'Name2', 'Name3'],
+    	listPost: 2
     },
     {
     	name: "Cat4",
     	imgSrc: 'http://c3.staticflickr.com/3/2082/2140091820_85f5cbe62f_n.jpg',
     	imgAttribution : "https://flicker.com",
     	clickCount: 0,
-    	nickNames : ['Name1' ,'Name2', 'Name3']
+    	nickNames : ['Name1' ,'Name2', 'Name3'],
+    	listPost: 3
     },
     {
     	name: "Cat5",
     	imgSrc: 'http://c4.staticflickr.com/8/7172/6759245781_7921be45e8_n.jpg',
     	imgAttribution : "https://flicker.com",
     	clickCount: 0,
-    	nickNames : ['Name1' ,'Name2', 'Name3']
+    	nickNames : ['Name1' ,'Name2', 'Name3'],
+    	listPost: 4
     }
 ]
 
@@ -41,7 +46,8 @@ var Cat = function(data){
 	this.name = ko.observable(data.name);
 	this.imgSrc = ko.observable(data.imgSrc);
 	this.imgAttribution = ko.observable(data.imgAttribution);
-	this.nickNames = ko.observableArray(data.nickNames)
+	this.nickNames = ko.observableArray(data.nickNames);
+	this.listPost = ko.observable(data.listPost);
 	//levels
 	this.title = ko.computed(function() {
 		var title = "Newborn";
@@ -56,15 +62,6 @@ var Cat = function(data){
 		}
         return title
     }, this);
-
-	//adding nick names 
-	/*this.nickNames =  {
-		names: [
-            { firstName: 'Name1' },
-            { firstName: 'Name2'},
-            { firstName: 'Name3'}
-        ]
-    }*/
 };
 
 
@@ -79,10 +76,20 @@ var ViewModel = function() {
 		self.catList.push(new Cat(catItem));
 	});
 
-	this.currentCat = ko.observable(this.catList()[0]);
+	var displayCat = 2;
+	this.currentCat = ko.observable(this.catList()[displayCat]);
+
+	this.setCat = function(clickedCat){
+		self.currentCat(clickedCat)
+
+	}
+		
+	
+
 	this.incrementCounter = function(){
 		self.currentCat().clickCount(self.currentCat().clickCount()+1);
 		//this.clickCount( this.clickCount() + 1 );
+		console.log(self.displayCat)
 	};
 };
 

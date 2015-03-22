@@ -1,42 +1,88 @@
+var initialCats = [
+	{
+		name: "Cat1",
+    	imgSrc: 'http://c2.staticflickr.com/2/1126/625069434_db86b67df8_b.jpg',
+    	imgAttribution : "https://flicker.com",
+    	clickCount: 0,
+    	nickNames : ['Name1' ,'Name2', 'Name3']
+    },
+     {
+    	name: "Cat2",
+    	imgSrc: 'http://c3.staticflickr.com/3/2298/2290467335_89067c7b51_n.jpg',
+    	imgAttribution : "https://flicker.com",
+    	clickCount: 0,
+    	nickNames : ['Name1' ,'Name2', 'Name3']
+	},
+	{
+		name: "Cat3",
+    	imgSrc: 'http://c4.staticflickr.com/4/3765/9126414150_0d9e1b840b_c.jpg',
+    	imgAttribution : "https://flicker.com",
+    	clickCount: 0,
+    	nickNames : ['Name1' ,'Name2', 'Name3']
+    },
+    {
+    	name: "Cat4",
+    	imgSrc: 'http://c3.staticflickr.com/3/2082/2140091820_85f5cbe62f_n.jpg',
+    	imgAttribution : "https://flicker.com",
+    	clickCount: 0,
+    	nickNames : ['Name1' ,'Name2', 'Name3']
+    },
+    {
+    	name: "Cat5",
+    	imgSrc: 'http://c4.staticflickr.com/8/7172/6759245781_7921be45e8_n.jpg',
+    	imgAttribution : "https://flicker.com",
+    	clickCount: 0,
+    	nickNames : ['Name1' ,'Name2', 'Name3']
+    }
+]
 
-var Cat = function(){
-	this.clickCount = ko.observable(0);
-	this.name = ko.observable("Tabby");
-	this.imgSrc = ko.observable("img/434164568_fea0ad4013_z.jpg");
-	this.imgAttribution = ko.observable("https://flicker.com");
-
+var Cat = function(data){
+	this.clickCount = ko.observable(data.clickCount);
+	this.name = ko.observable(data.name);
+	this.imgSrc = ko.observable(data.imgSrc);
+	this.imgAttribution = ko.observable(data.imgAttribution);
+	this.nickNames = ko.observableArray(data.nickNames)
 	//levels
-	this.level = ko.computed(function() {
-		var level = "Newborn";
+	this.title = ko.computed(function() {
+		var title = "Newborn";
 		if (this.clickCount()<10){
-			level = "Newborn"
+			title = "Newborn"
 		} else if (this.clickCount()<13){
-			level = "Infant"
+			title = "Infant"
 		} else if (this.clickCount()<32) {
-			level = "Teen"
+			title = "Teen"
 		} else {
-			level ="Old man"
+			title ="Old man"
 		}
-        return level
+        return title
     }, this);
 
 	//adding nick names 
-	this.nickNames =  {
+	/*this.nickNames =  {
 		names: [
             { firstName: 'Name1' },
             { firstName: 'Name2'},
             { firstName: 'Name3'}
         ]
-    }
+    }*/
 };
 
 
 var ViewModel = function() {
 	//option for using self to step out of nested scope issuesand use this to rfer to view model
 	//var self = this; //and then can ue self.thing to get out to vm
-	this.currentCat = ko.observable(new Cat())
+	var self = this;
+
+	this.catList = ko.observableArray([]);
+
+	initialCats.forEach(function(catItem) {
+		self.catList.push(new Cat(catItem));
+	});
+
+	this.currentCat = ko.observable(this.catList()[0]);
 	this.incrementCounter = function(){
-		this.clickCount( this.clickCount() + 1 );
+		self.currentCat().clickCount(self.currentCat().clickCount()+1);
+		//this.clickCount( this.clickCount() + 1 );
 	};
 };
 

@@ -21,6 +21,14 @@ var app = app || {};
 			this.save({
 				completed: !this.get('completed')
 			});
+			if (this.get('completed')){
+				this.set('title', this.get('title')+'--done')
+			} else{
+				var t = this.get('title')
+
+				this.set('title', t.slice(0,t.length-6))
+				 
+			}
 		}
 	});
 })();

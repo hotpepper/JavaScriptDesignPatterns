@@ -13,7 +13,8 @@ var app = app || {};
 		// and ensure that each todo created has `title` and `completed` keys.
 		defaults: {
 			title: '',
-			completed: false
+			completed: false,
+			priority: false
 		},
 
 		// Toggle the `completed` state of this todo item.
@@ -21,14 +22,14 @@ var app = app || {};
 			this.save({
 				completed: !this.get('completed')
 			});
-			/*if (this.get('completed')){
-				this.set('title', this.get('title')+'--done')
-			} else{
-				var t = this.get('title')
+		},
 
-				this.set('title', t.slice(0,t.length-6))
-				 
-			}*/
+		//priority toggel the priority state of todo item
+		priority: function(){
+			this.save({
+				priority: !this.get('priority')
+			});
+			console.log(this.get('priority'))
 		}
 	});
 })();
